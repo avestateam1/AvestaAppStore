@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avesta App Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- پس‌زمینه متحرک -->
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- بخش ۱: اسلایدر خوش‌آمدگویی -->
+    <section id="onboarding-section" class="page active">
+        <div class="onboarding-container glass-effect">
+            <div class="slides-wrapper">
+                <div class="slide active-slide">
+                    <i class="fas fa-users icon-large"></i>
+                    <h2> تیم Avesta</h2>
+                    <p> ما تیمی خلاق و پیشرو هستیم.</p>
+                </div>
+                <div class="slide">
+                    <i class="fas fa-rocket icon-large"></i>
+                    <h2> نوآوری و سرعت</h2>
+                    <p> استفاده از جدیدترین تکنولوژی‌ها.</p>
+                </div>
+            </div>
+            <div class="pagination-dots" id="dots-container">
+                <span class="dot active-dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="onboarding-controls">
+                <button id="prev-btn" class="nav-btn"><i class="fas fa-arrow-right"></i></button>
+                <button id="next-btn" class="nav-btn primary"> بعدی</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش ۲: فروشگاه اصلی -->
+    <section id="store-section" class="page">
+        <div class="app-container glass-effect">
+            <header>
+                <h1>Avesta Store</h1>
+                <p class="subtitle"> دنیای اپلیکیشن‌های اختصاصی</p>
+            </header>
+
+            <ul class="apps-list">
+                <!-- آیتم Avesta Application -->
+                <li class="app-item" onclick="openMenu('avesta')">
+                    <div class="app-icon icon-avesta">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name">Avesta Application</div>
+                        <div class="app-desc"> سرویس‌های اختصاصی</div>
+                    </div>
+                    <i class="fas fa-chevron-left arrow-icon"></i>
+                </li>
+
+                <!-- آیتم Game -->
+                <li class="app-item" onclick="openMenu('game')">
+                    <div class="app-icon icon-game">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name">Game Center</div>
+                        <div class="app-desc"> مرکز بازی‌های هیجان‌انگیز</div>
+                    </div>
+                    <i class="fas fa-chevron-left arrow-icon"></i>
+                </li>
+
+                <!-- آیتم Settings -->
+                <li class="app-item" onclick="openSettings()">
+                    <div class="app-icon icon-settings">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name"> تنظیمات</div>
+                        <div class="app-desc"> ظاهر و اطلاعات برنامه</div>
+                    </div>
+                    <i class="fas fa-chevron-left arrow-icon"></i>
+                </li>
+            </ul>
+
+            <footer class="footer-credit">
+                Created by DeteX
+            </footer>
+        </div>
+    </section>
+
+    <!-- پنجره پاپ‌آپ انتخاب دسته‌بندی -->
+    <div class="modal-overlay" id="categoryModal">
+        <div class="modal-content glass-effect">
+            <h3 class="modal-title" id="modal-title"> انتخاب گزینه</h3>
+            <div class="modal-options" id="modal-options-container"></div>
+            <button class="close-modal" onclick="closeModal()"> بستن</button>
+        </div>
+    </div>
+
+    <!-- صفحه بازی‌های آفلاین -->
+    <section id="offline-games-section" class="page">
+        <div class="app-container glass-effect">
+            <header>
+                <button id="back-to-categories" class="back-btn"><i class="fas fa-arrow-right"></i> بازگشت</button>
+                <h1> بازی‌های آفلاین</h1>
+            </header>
+            
+            <ul class="apps-list">
+                <li class="app-item" onclick="launchGame('snake')">
+                    <div class="app-icon icon-snake" style="background: linear-gradient(45deg, #11998e, #38ef7d);">
+                        <i class="fas fa-biohazard"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name">Snake Classic</div>
+                        <div class="app-desc"> مار کلاسیک نوستالژیک</div>
+                    </div>
+                </li>
+
+                <li class="app-item" onclick="launchGame('memory')">
+                    <div class="app-icon icon-memory" style="background: linear-gradient(45deg, #8E2DE2, #4A00E0);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name">Memory Match</div>
+                        <div class="app-desc"> تمرین حافظه با کارت‌ها</div>
+                    </div>
+                </li>
+                
+                <li class="app-item" onclick="launchGame('tictactoe')">
+                    <div class="app-icon icon-ttt" style="background: linear-gradient(45deg, #ff9966, #ff5e62);">
+                        <i class="fas fa-th"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name"> بازی دوز</div>
+                        <div class="app-desc"> با دوستت بازی کن!</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- صفحه بازی‌های آنلاین -->
+    <section id="online-games-section" class="page">
+        <div class="app-container glass-effect">
+            <header>
+                <button id="back-to-categories-2" class="back-btn"><i class="fas fa-arrow-right"></i> بازگشت</button>
+                <h1> بازی‌های آنلاین</h1>
+            </header>
+            
+            <ul class="apps-list">
+                <li class="app-item disabled-item">
+                    <div class="app-icon icon-online" style="background: linear-gradient(45deg, #8E2DE2, #4A00E0);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name">Avesta Online PartyGames</div>
+                        <div class="app-desc"> سرگرمی گروهی آنلاین</div>
+                    </div>
+                    <span class="status-badge soon"> به زودی</span>
+                </li>
+
+                <li class="app-item disabled-item">
+                    <div class="app-icon icon-hakhamaneshian" style="background: linear-gradient(45deg, #FDC830, #F37335);">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name">Avesta Hakhamaneshian Games</div>
+                        <div class="app-desc"> بازی‌های استراتژیک تاریخی</div>
+                    </div>
+                    <span class="status-badge soon"> به زودی</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- صفحه تنظیمات -->
+    <section id="settings-section" class="page">
+        <div class="app-container glass-effect">
+            <header>
+                <button id="back-to-store" class="back-btn"><i class="fas fa-arrow-right"></i> بازگشت</button>
+                <h1> تنظیمات</h1>
+            </header>
+            
+            <ul class="apps-list">
+                <li class="app-item" onclick="toggleTheme()">
+                    <div class="app-icon icon-theme" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name"> تغییر تم رنگی</div>
+                        <div class="app-desc"> تغییر گرادینت پس‌زمینه</div>
+                    </div>
+                </li>
+                
+                <li class="app-item" onclick="showAbout()">
+                    <div class="app-icon icon-about" style="background: linear-gradient(45deg, #4facfe, #00f2fe);">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="app-info">
+                        <div class="app-name"> درباره ما</div>
+                        <div class="app-desc"> اطلاعات توسعه‌دهنده</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- کانتینر اجرای بازی‌ها -->
+    <div id="game-player-modal" class="modal-overlay">
+        <div class="game-player-container glass-effect">
+            <div class="game-header">
+                <h3 id="game-title"> عنوان بازی</h3>
+                <button class="close-game-btn" onclick="closeGame()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="game-area" class="game-area">
+                <!-- محتوای بازی اینجا لود می‌شود -->
+            </div>
+            <!-- کنترلر موبایل برای بازی مار -->
+            <div id="mobile-controls" class="mobile-controls" style="display:none;">
+                <button onclick="changeDirection('up')"><i class="fas fa-arrow-up"></i></button>
+                <div class="control-row">
+                    <button onclick="changeDirection('left')"><i class="fas fa-arrow-left"></i></button>
+                    <button onclick="changeDirection('down')"><i class="fas fa-arrow-down"></i></button>
+                    <button onclick="changeDirection('right')"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
